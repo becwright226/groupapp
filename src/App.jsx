@@ -1,8 +1,9 @@
 
 import './App.css';
+
 import WeatherIndex from './Weather/weatherIndex';
 import React, { useState } from 'react';
-
+import EventFetch from './components/ticketmaster/EventApp.jsx';
 
 function App() {
   const [lat, setLat] = useState(null);
@@ -32,6 +33,7 @@ function App() {
       {lat && <p>Latitude: {lat}</p>}
       {lng && <p>Longitude: {lng}</p>}
       <WeatherIndex lat={lat} lng={lng}/>
+      <EventFetch/>
     </div>
   );
 }
