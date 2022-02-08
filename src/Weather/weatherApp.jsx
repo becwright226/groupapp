@@ -45,7 +45,7 @@
 
     return ( 
 
-    <div className='mainDiv' style={{width: '25%', border: 'double 3px solid', float: 
+    <div className='mainDiv' style={{width: '30%', border: 'double 3px solid', float: 
     'left'}}>
      <Card
       body

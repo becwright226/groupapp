@@ -74,7 +74,7 @@ return (
         <Container
         striped
         style={{backgroundColor:"#999",
-        height:"70%",
+        height:"215%",
         border:'double 10px black',
         color:'white',
         padding:"20px",
