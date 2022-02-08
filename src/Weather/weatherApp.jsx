@@ -45,13 +45,14 @@
 
     return ( 
 
-    <div className='mainDiv' style={{width: '50%'}}>
+    <div className='mainDiv' style={{width: '25%', border: 'double 3px solid', float: 
+    'left'}}>
      <Card
       body
       inverse
       style={{
-      backgroundColor: '#333',
-      borderColor: '#333',
+      backgroundColor: '#999',
+      border: 'double 4px #000',
     }}
   >
       <CardTitle tag="h5">

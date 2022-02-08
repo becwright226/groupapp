@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={getLocation}>Get Location</button>
+      <button onClick={getLocation} style={{borderRadius: '10px', width: '150px', backgroundColor: '#999' }} >Get Location</button>
       <h1>Your current coordinates:</h1>
       <p>{status}</p>
       {lat && <p>Latitude: {lat}</p>}
