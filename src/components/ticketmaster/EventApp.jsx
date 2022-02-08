@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CardLink, Col, NavLink, Table } from 'reactstrap';
+
+import { Col, Row, Container } from 'reactstrap';
+import EventDisplay from './EventDisplay';
 
 
 
@@ -12,73 +14,87 @@ const lat = 39.970406
 const lon = -85.966848
 const url = `https://app.ticketmaster.com/discovery/v2/events.json?latlong=${lat},${lon}&apikey=${APIkey}`
 
-const [fetchEvents, setFetchEvents] = useState('');
+const [fetchEvents, setFetchEvents] = useState([]);
 const [distance, setDistance] = useState('');
-const [dates, setDates] = useState('');
+const [dates, setDates] = useState([]);
 const [times, setTimes] = useState('');
 const [maxPriceRange, setMaxPriceRange] = useState([]);
-const [info, setInfo] = useState('');
 const [tickets, setTickets] = useState('');
 const [promoters, setPromoters] = useState([]);
 
-useEffect(() => {
 
+
+useEffect(() => {
     fetch(url)
     .then((res) => {
       return res.json()
     }) .then((data) => {
-        console.log(data._embedded.events[1])
-      setFetchEvents(data._embedded.events[1].name)
-      setDistance(data._embedded.events[1].distance)
-      setDates(data._embedded.events[1].dates.start.localDate)
-      setTimes(data._embedded.events[1].dates.start.localTime)
-      setMaxPriceRange(data._embedded.events[1].priceRanges[0].max)
-      setTickets(data._embedded.events[1].url)
-      setPromoters(data._embedded.events[1].promoter.name)
+        console.log(data._embedded)//
+      setFetchEvents(data._embedded.events)
+      setDistance(data._embedded.events)
+      setTimes(data._embedded.events)
+      setDates(data._embedded.events)
+    
     });
     
   }, []);
 
-///Attempt 6
+  const eventMapper = ()=> {
+    return fetchEvents.map((event, index) => {
+        return(
+            <tr key={index}>
+                <tr style={{color:"Danger"}}>Event: </tr>
+                <br/>
+                <br/>
+                <br/>
+                <th scope='row' style={{width: "30%"}}>{event.name}</th>
+                <tr> Distance: </tr>
+                <br/>
+                <br/>
+                <br/>
+                <th scope='row' style={{width: "20%"}}>{event.distance} miles from Fishers</th>
+                <tr> Date: </tr>
+                <br/>
+                <br/>
+                <br/>
+                <th scope='row' style={{width: "15%"}}>{event.dates.start.localDate}</th>
+                <tr> Time: </tr>
+                <br/>
+                <br/>
+                <br/>
+                <th scope='row' style={{width: "12%"}}>{event.dates.start.localTime}</th>
+            </tr>
+        )
+    }
+    )
+}
+
 return ( 
-        <Table> 
-         
-         <Col>
-        <li>{fetchEvents}</li>
-        </Col>
-      
-       
-        <Col>
-        <li>{distance}</li>
-        </Col>
-        
-        
-        <Col>
-        <li>{dates}</li>
-        </Col>
-        
-        
-        <Col>
-        <li>{times}</li>
-        </Col>
-     
-        <Col>
-        <li>{maxPriceRange}</li>
-        </Col>
 
-        <Col>
-        <li>{promoters}</li>
+        <Container
+        striped
+        style={{backgroundColor:"#999",
+        height:"70%",
+        border:'double 10px black',
+        color:'white',
+        padding:"20px",
+        width:"60%",
+        borderRadius:"5%",
+        float:"right"}}>
+            <h3>Events near Fishers</h3>
+         <Row 
+         style={{padding:"5px", border:'ridge 10px black', borderRadius:"2%", color:'HighlightText'}}>
+         <Col style={{padding:"50px"}}>
+        {eventMapper()}
         </Col>
-
-        <Col>
-        <li>{tickets}</li>
-        </Col>
-    </Table>
+        </Row>
+        </Container>
+   
         
         );
 }
-    
     export default EventFetch;
+
     /*async function handleFetch() {
         
         try {
