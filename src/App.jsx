@@ -1,11 +1,11 @@
 
 import './App.css';
-import Event from './components/ticketmaster/ticketApp';
+import EventFetch from './components/ticketmaster/EventApp.jsx';
 
 function App() {
   return (
     <div className="App">
-      <Event/>
+      <EventFetch/>
     </div>
   );
 }
